@@ -27,7 +27,7 @@ public class arrowLock : MonoBehaviour
     private GameObject target;
     public bool lookAtArrowLock=false;
     public string ans;
-    public string userAns;   //private으로 바꾸기
+    private string userAns;   
     private Vector3 originCameraPos;
     private Quaternion originCameraRotation;
 
