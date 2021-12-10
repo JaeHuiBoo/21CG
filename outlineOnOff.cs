@@ -27,6 +27,22 @@ public class outlineOnOff : MonoBehaviour
             }
         }
 
+        else if (this.name == "number_lock")
+        {
+            if (!this.transform.GetComponent<numberLock>().lookAtNumLock)
+            {
+                this.GetComponent<Outline>().enabled = true;
+            }
+        }
+
+        else if (this.tag == "numLockGear")
+        {
+            if (this.transform.parent.GetComponent<numberLock>().lookAtNumLock)
+            {
+                this.GetComponent<Outline>().enabled = true;
+            }
+        }
+
         else
             this.GetComponent<Outline>().enabled = true;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class radioSceneBtn : MonoBehaviour
+public class radioBtn : MonoBehaviour
 {
     [SerializeField]
     GameObject morseCode;
@@ -17,11 +17,20 @@ public class radioSceneBtn : MonoBehaviour
     [SerializeField]
     GameObject InputField;
 
-    [SerializeField]
-    GameObject backBtn;
+    //[SerializeField]
+    //GameObject backBtn;
 
     [SerializeField]
     GameObject enterBtn;
+
+    [SerializeField]
+    GameObject notebook;
+
+    [SerializeField]
+    GameObject notebookBtn;
+
+    [SerializeField]
+    GameObject clue_0;
 
     private GameObject target;
     private Vector3 originCameraPosition;
@@ -34,7 +43,8 @@ public class radioSceneBtn : MonoBehaviour
     {
         InputField.SetActive(false);
         enterBtn.SetActive(false);
-        backBtn.SetActive(false);
+        clue_0.SetActive(false);
+        //backBtn.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,7 +81,7 @@ public class radioSceneBtn : MonoBehaviour
                     radio.transform.GetComponent<AudioSource>().Play();
                     InputField.SetActive(true);
                     enterBtn.SetActive(true);
-                    backBtn.SetActive(true);
+                    //backBtn.SetActive(true);
                     
                 }
             }
@@ -97,7 +107,7 @@ public class radioSceneBtn : MonoBehaviour
         mainCamera.transform.position = originCameraPosition;
         mainCamera.transform.rotation = Quaternion.Euler(originCameraRotation);
         InputField.SetActive(false);
-        backBtn.SetActive(false);
+        //backBtn.SetActive(false);
         enterBtn.SetActive(false);
     }
 
@@ -109,6 +119,17 @@ public class radioSceneBtn : MonoBehaviour
         {
             Debug.Log("success");
         }
+    }
+
+    public void notebookBtnClick()
+    {
+        AudioSource audio = notebook.GetComponent<AudioSource>();
+        audio.Play();
+        notebookBtn.SetActive(false);
+        this.gameObject.SetActive(false);
+        clue_0.SetActive(true);
+        mainCamera.transform.position = new Vector3(32.01f, 10.52f, -21.6f);
+        mainCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
     }
 
 }

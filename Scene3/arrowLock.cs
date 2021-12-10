@@ -25,7 +25,9 @@ public class arrowLock : MonoBehaviour
     private GameObject lockPanel;
 
     private GameObject target;
+
     public bool lookAtArrowLock=false;
+
     public string ans;
     private string userAns;   
     private Vector3 originCameraPos;
@@ -62,42 +64,47 @@ public class arrowLock : MonoBehaviour
                     lockPanel.SetActive(false);
                 }
 
-                if (target.name == "lock")
+                else if (target.name == "lock")
                 {
                     userAns = "";
                 }
+                
             }           
 
         }
 
         if (!mainCamera.transform.GetComponent<move>().enabled)
         {
-            Animation anim = arrowLockBoll.transform.GetComponent<Animation>();
-            Animator animator = arrowLockBoll.transform.GetComponent<Animator>();
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (lookAtArrowLock)
             {
-                anim.Play("leftArrowLock");
-            }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                anim.Play("rightArrowLock");
-            }
-            else if (Input.GetKey(KeyCode.UpArrow))
-            {
-                anim.Play("upArrowLock");
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                anim.Play("downArrowLock");
-            }
+                Animation anim = arrowLockBoll.transform.GetComponent<Animation>();
+                Animator animator = arrowLockBoll.transform.GetComponent<Animator>();
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    anim.Play("leftArrowLock");
+                }
+                else if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    anim.Play("rightArrowLock");
+                }
+                else if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    anim.Play("upArrowLock");
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    anim.Play("downArrowLock");
+                }
 
-            if(userAns==ans)
-            {
-                arrowLockTorus.GetComponent<Animation>().Play("openTorus");
-                userAns = "";
+                if (userAns == ans)
+                {
+                    arrowLockTorus.GetComponent<Animation>().Play("openTorus");
+                    userAns = "";
+                }
             }
         }
     }
+
     private GameObject getTarget3D()
     {
         GameObject target = null;
@@ -138,7 +145,8 @@ public class arrowLock : MonoBehaviour
         mainCamera.transform.GetComponent<move>().enabled = true;
         userAns = "";
         backToOriginButton.SetActive(false);
-        lookAtArrowLock = false;
+        if (lookAtArrowLock)
+            lookAtArrowLock = false;
     }
 
 }

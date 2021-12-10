@@ -14,6 +14,11 @@ public class arrowLockTorus : MonoBehaviour
 
     private void openTorus()
     {
+        arrowLock.SetActive(false);
         openBlueLock.transform.GetComponent<Animation>().Play("openBlue");
+
+        AudioSource audio = openBlueLock.transform.GetComponent<AudioSource>();
+        audio.clip = Resources.Load("Audios/success") as AudioClip;
+        audio.Play();
     }
 }
