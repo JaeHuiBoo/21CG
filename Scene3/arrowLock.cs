@@ -29,9 +29,7 @@ public class arrowLock : MonoBehaviour
     public bool lookAtArrowLock=false;
 
     public string ans;
-    private string userAns;   
-    private Vector3 originCameraPos;
-    private Quaternion originCameraRotation;
+    public string userAns;   
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +51,8 @@ public class arrowLock : MonoBehaviour
             {
                 if (target.name == "arrowlock" && !lookAtArrowLock)
                 {
-                    originCameraPos = mainCamera.transform.position;
-                    originCameraRotation = mainCamera.transform.rotation;
+                    btnListener.originCameraPos = mainCamera.transform.position;
+                    btnListener.originCameraRotation = mainCamera.transform.rotation;
                     mainCamera.transform.position = new Vector3(-3.53f, 12.75f, 39.42f);
                     mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
                     mainCamera.transform.GetComponent<move>().enabled = false;
@@ -138,15 +136,5 @@ public class arrowLock : MonoBehaviour
         userAns += "D";
     }
 
-    public void backToOriginButtonClick()
-    {
-        mainCamera.transform.position = originCameraPos;
-        mainCamera.transform.rotation = originCameraRotation;
-        mainCamera.transform.GetComponent<move>().enabled = true;
-        userAns = "";
-        backToOriginButton.SetActive(false);
-        if (lookAtArrowLock)
-            lookAtArrowLock = false;
-    }
 
 }

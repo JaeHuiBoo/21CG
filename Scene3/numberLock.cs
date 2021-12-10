@@ -8,7 +8,7 @@ public class numberLock : MonoBehaviour
     private GameObject mainCamera;
 
     [SerializeField]
-    private GameObject numBackToOriginBtn;
+    private GameObject backToOriginBtn;
 
     private GameObject target;
 
@@ -19,9 +19,6 @@ public class numberLock : MonoBehaviour
 
     [SerializeField]
     private GameObject lockPanel;
-
-    private Vector3 originCameraPos;
-    private Quaternion originCameraRotation;
 
     [SerializeField]
     private GameObject firstGear;
@@ -38,7 +35,7 @@ public class numberLock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numBackToOriginBtn.SetActive(false);
+        backToOriginBtn.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,12 +52,12 @@ public class numberLock : MonoBehaviour
             {
                 if (target.name == "number_lock" && !lookAtNumLock)
                 {
-                    originCameraPos = mainCamera.transform.position;
-                    originCameraRotation = mainCamera.transform.rotation;
+                    btnListener.originCameraPos = mainCamera.transform.position;
+                    btnListener.originCameraRotation = mainCamera.transform.rotation;
                     mainCamera.transform.position = new Vector3(-17.9f, 11.59f, 46.27f);
                     mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
                     mainCamera.transform.GetComponent<move>().enabled = false;
-                    numBackToOriginBtn.SetActive(true);
+                    backToOriginBtn.SetActive(true);
                     lookAtNumLock = true;
                     cluePanel.SetActive(false);
                     lockPanel.SetActive(false);
@@ -96,16 +93,7 @@ public class numberLock : MonoBehaviour
     }
 
 
-    public void backToOriginBtnClick()
-    {
-        mainCamera.transform.position = originCameraPos;
-        mainCamera.transform.rotation = originCameraRotation;
-        mainCamera.transform.GetComponent<move>().enabled = true;
-        userAns = "-1";
-        numBackToOriginBtn.SetActive(false);
-        if (lookAtNumLock)
-            lookAtNumLock = false;
-    }
+
 
     private string getGearNum(GameObject gear)
     {
