@@ -43,6 +43,14 @@ public class outlineOnOff : MonoBehaviour
             }
         }
 
+        else if (this.name == "containerBox")
+        {
+            if (this.transform.parent.GetComponent<numberLock>().lookAtNumLock)
+            {
+                this.GetComponent<Outline>().enabled = true;
+            }
+        }
+
         else
             this.GetComponent<Outline>().enabled = true;
     }

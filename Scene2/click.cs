@@ -12,19 +12,6 @@ public class click : MonoBehaviour
     [SerializeField]
     private Camera mainCamera;
 
-    [SerializeField]
-    private TextMesh numberText;
-
-    [SerializeField]
-    private GameObject door;
-
-    public string doorAns;  //answer for the door lock
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        numberText.text = "";
-    }
 
     // Update is called once per frame
     void Update()
@@ -67,46 +54,14 @@ public class click : MonoBehaviour
                     }
                 }
 
-                else if(target.tag=="number")
+                if (target.name == "containerBox")
                 {
-                    if (numberText.text.Length <= 8)
-                    {
-                        int doorlockNum = Int32.Parse(target.name.Substring(4));
-                        numberText.text = numberText.text + doorlockNum.ToString();
-                    }
+
                 }
 
-                else if (target.tag == "eraser")
-                {
-                    if(numberText.text.Length>=0)
-                        numberText.text = numberText.text.Substring(0,numberText.text.Length-1);
-                }
 
-                else if (target.tag=="enter")
-                {
-                    numberText.color = Color.red;
-                    if (numberText.text == doorAns)
-                    {
-                        numberText.text = "Success";
-                        Invoke("success", 1.3f);
-                    }
-                    else
-                    {
-                        numberText.text = "Fail";
-                        Invoke("fail", 1.3f);  //delay
-                    }
-                }
             }
         }
-    }
-    private void fail()
-    {
-        numberText.color = Color.black;
-        numberText.text = "";
-    }
-    private void success()
-    {
-        door.transform.GetComponent<Animation>().Play("doorOpen");
     }
 
     private GameObject getTarget3D()
