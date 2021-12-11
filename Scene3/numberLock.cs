@@ -29,6 +29,9 @@ public class numberLock : MonoBehaviour
     [SerializeField]
     private GameObject thirdGear;
 
+    [SerializeField]
+    private GameObject padLock;
+
     public string userAns="-1";
     public string ans;
 
@@ -54,7 +57,7 @@ public class numberLock : MonoBehaviour
                 {
                     backBtn3.originCameraPos = mainCamera.transform.position;
                     backBtn3.originCameraRotation = mainCamera.transform.rotation;
-                    mainCamera.transform.position = new Vector3(-17.9f, 11.59f, 46.27f);
+                    mainCamera.transform.position = new Vector3(-17.9f, 12.6f, 46.27f);
                     mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
                     mainCamera.transform.GetComponent<move>().enabled = false;
                     backToOriginBtn.SetActive(true);
@@ -72,7 +75,8 @@ public class numberLock : MonoBehaviour
                 userAns = getGearNum(firstGear) + getGearNum(secondGear) + getGearNum(thirdGear);
                 if (userAns == ans)
                 {
-
+                    padLock.GetComponent<Animation>().Play("openNumLock");
+                    userAns = "";
                 }
             }
         }

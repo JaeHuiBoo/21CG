@@ -51,21 +51,15 @@ public class radioManager: MonoBehaviour
             
             if (Input.GetMouseButtonUp(0))
             {
-
-                if(target.name=="drawer_1")
-                {
-                    Debug.Log(target.GetComponent<Animation>());
-                    target.GetComponent<Animation>().Play();
-                }
                 
-                else if (target.name=="morseCode")
+                if (target.name=="morseCode")
                 {
                     lookAtRadio = true;
                     backBtn3.originCameraPos = mainCamera.transform.position;
                     backBtn3.originCameraRotation = mainCamera.transform.rotation;
 
-                    mainCamera.transform.position = new Vector3(-41.77f, 21.33f, 3.74f);
-                    mainCamera.transform.rotation = Quaternion.Euler(new Vector3(63.685f, -90f, 0));
+                    mainCamera.transform.position = new Vector3(-41.1f, 13.5f, -39.3f);
+                    mainCamera.transform.rotation = Quaternion.Euler(new Vector3(43.495f, 270f, 0));
 
                     mainCamera.transform.GetComponent<move>().enabled = false;
                     radio.transform.GetComponent<AudioSource>().Play();
@@ -97,7 +91,7 @@ public class radioManager: MonoBehaviour
         
         if (userAns == ans)
         {
-            Debug.Log("success");
+            InputField.transform.GetChild(2).GetComponent<Text>().text="2581";
         }
     }
     

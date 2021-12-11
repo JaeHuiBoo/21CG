@@ -26,6 +26,9 @@ public class backBtn3 : MonoBehaviour
     private GameObject notebook;
 
     [SerializeField]
+    private GameObject gameManager;
+
+    [SerializeField]
     private GameObject mainCamera;
 
     public static Vector3 originCameraPos;
@@ -66,7 +69,7 @@ public class backBtn3 : MonoBehaviour
             backToOriginBtn.gameObject.SetActive(false);
             radio.transform.GetComponent<radioManager>().lookAtRadio = false;
             enterBtn.SetActive(false);
-            Debug.Log("in radio");
+            radio.transform.GetComponent<AudioSource>().Stop();
         }
 
         else if (notebook.transform.GetComponent<noteBook>().lookAtNotebook)
@@ -77,7 +80,15 @@ public class backBtn3 : MonoBehaviour
             backToOriginBtn.gameObject.SetActive(false);
             notebook.transform.GetComponent<noteBook>().lookAtNotebook = false;
             notebook.transform.GetComponent<AudioSource>().Stop();
-            Debug.Log("in notebook");
+        }
+
+        else if (gameManager.transform.GetComponent<clickScene3>().lookAtPushLock)
+        {
+            mainCamera.transform.position = originCameraPos;
+            mainCamera.transform.rotation = originCameraRotation;
+            mainCamera.transform.GetComponent<move>().enabled = true;
+            backToOriginBtn.gameObject.SetActive(false);
+            gameManager.transform.GetComponent<clickScene3>().lookAtPushLock = false;
         }
     }
 

@@ -35,8 +35,12 @@ public class doorNumLock : MonoBehaviour
     void Start()
     {
         doorNumText.text = "";
-        elecNumText.text = "";
-        containerNumText.text = "";
+
+        if(elecNumText!=null)
+            elecNumText.text = "";
+
+        if(containerNumText!=null)
+            containerNumText.text = "";
     }
 
     void Update()

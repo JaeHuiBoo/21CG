@@ -61,6 +61,15 @@ public class outlineOnOff : MonoBehaviour
             }
         }
 
+        else if (this.name == "pushNumberLock")
+        {
+            GameObject gameManager = GameObject.Find("GameManager");
+            if (!gameManager.GetComponent<clickScene3>().lookAtPushLock)
+            {
+                this.GetComponent<Outline>().enabled = true;
+            }
+        }
+
     }
 
     private void OnMouseExit()
