@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class clickScene3 : MonoBehaviour
@@ -24,10 +25,15 @@ public class clickScene3 : MonoBehaviour
     [SerializeField]
     private GameObject lockPanel;
 
+    [SerializeField]
+    private GameObject pushNumTorus;
+
+    public List<string> userAnswers = new List<string>();
+    public List<string> ans = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -76,16 +82,29 @@ public class clickScene3 : MonoBehaviour
                     if (!lockFlag[lockNum])  
                     {
                         lockFlag[lockNum] = true;
+                        userAnswers.Add(lockNum.ToString());
+                        userAnswers.Sort();
                         target.transform.GetComponent<MeshRenderer>().material = Resources.Load("Materials/red_mat") as Material;
                     }
                     else
                     {
                         lockFlag[lockNum] = false;
+                        int idx = userAnswers.FindIndex(a => a.Contains(lockNum.ToString()));
+                        userAnswers.RemoveAt(idx);
                         target.transform.GetComponent<MeshRenderer>().material = Resources.Load("Materials/cube") as Material;
                     }
                 }
             }
         }
+
+
+        if(userAnswers.SequenceEqual(ans))
+        {
+            Debug.Log("in");
+            pushNumTorus.transform.GetComponent<Animation>().Play();
+            userAnswers.RemoveRange(0, ans.Count - 1);
+        }
+        
     }
 
     private GameObject getTarget3D()
