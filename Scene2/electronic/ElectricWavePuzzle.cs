@@ -18,6 +18,7 @@ public class ElectricWavePuzzle : MonoBehaviour
     public bool gamePause = false;
 
     private AudioSource audioSource;
+
     private float m1_point1 = 0;
     private float m1_point2 = 0;
     private float m2_point1 = 0;
@@ -25,7 +26,7 @@ public class ElectricWavePuzzle : MonoBehaviour
     private bool complete1 = false;
     private bool complete2 = false;
 
-    void Start ()
+    void Start()
     {
         audioSource = GetComponent<AudioSource>();
         elecSuccess.SetActive(false);
@@ -33,7 +34,7 @@ public class ElectricWavePuzzle : MonoBehaviour
         SetUp();
     }
 
-    public void SetUp ()
+    public void SetUp()
     {
         gamePause = false;
 
@@ -49,8 +50,8 @@ public class ElectricWavePuzzle : MonoBehaviour
 
         CheckComplete();
     }
-	
-	void Update ()
+
+    void Update()
     {
         monitor1.SetFloat("_Point1", m1_point1);
         monitor1.SetFloat("_Point2", m1_point2);
@@ -99,7 +100,7 @@ public class ElectricWavePuzzle : MonoBehaviour
         CheckComplete();
     }
 
-    public void CheckComplete ()
+    public void CheckComplete()
     {
         float pp = m1_point1 % 2.5f;
         pp = Mathf.Round(pp * 100f) / 100f;

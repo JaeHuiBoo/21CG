@@ -8,7 +8,8 @@ public class doorNumLock : MonoBehaviour
     public string doorAns;  //answer for the door lock
     public string elecAns;  
     public string containerAns;
-    
+
+
     [SerializeField]
     private TextMesh doorNumText;
 
@@ -27,6 +28,8 @@ public class doorNumLock : MonoBehaviour
 
     private GameObject target;
     private TextMesh selectedText;
+
+    private int mode = 0;
     
 
     void Start()
@@ -51,6 +54,7 @@ public class doorNumLock : MonoBehaviour
                 {
                     if (target.transform.parent.parent.name == "goOutDoor")
                     {
+                        mode = 1;
                         if (doorNumText.text.Length <= 8)
                         {
                             int num = System.Int32.Parse(target.name.Substring(4));
@@ -60,6 +64,7 @@ public class doorNumLock : MonoBehaviour
 
                     else if (target.transform.parent.parent.name == "BreakerPanelDoor")
                     {
+                        mode = 2;
                         if (elecNumText.text.Length <= 8)
                         {
                             int num = System.Int32.Parse(target.name.Substring(4));
@@ -69,6 +74,7 @@ public class doorNumLock : MonoBehaviour
 
                     else if (target.transform.parent.parent.name == "containerDoor")
                     {
+                        mode = 3;
                         if (containerNumText.text.Length <= 8)
                         {
                             int num = System.Int32.Parse(target.name.Substring(4));
@@ -78,22 +84,22 @@ public class doorNumLock : MonoBehaviour
 
                 }
 
-                
+
                 else if (target.tag == "eraser")
                 {
-                    if (target.transform.parent.parent.name == "goOutDoor")
+                    if (mode == 1)
                     {
                         if (doorNumText.text.Length > 0)
                             doorNumText.text = doorNumText.text.Substring(0, doorNumText.text.Length - 1);
                     }
 
-                    else if (target.transform.parent.parent.name == "BreakerPanelDoor")
+                    else if (mode == 2)
                     {
                         if (elecNumText.text.Length > 0)
                             elecNumText.text = elecNumText.text.Substring(0, elecNumText.text.Length - 1);
                     }
 
-                    else if (target.transform.parent.parent.name == "containerDoor")
+                    else if (mode == 3)
                     {
                         if (containerNumText.text.Length > 0)
                             containerNumText.text = containerNumText.text.Substring(0, containerNumText.text.Length - 1);
@@ -102,7 +108,7 @@ public class doorNumLock : MonoBehaviour
 
                 else if (target.tag == "enter")
                 {
-                    if (target.transform.parent.parent.name == "goOutDoor")
+                    if (target.transform.parent.parent.name == "goOutDoor" || mode == 1)
                     {
                         doorNumText.color = Color.red;
                         if (doorNumText.text == doorAns)
@@ -117,12 +123,12 @@ public class doorNumLock : MonoBehaviour
                         }
                     }
 
-                    else if (target.transform.parent.parent.name == "BreakerPanelDoor")
+                    else if (target.transform.parent.parent.name == "BreakerPanelDoor"||mode==2)
                     {
-                        containerNumText.color = Color.red;
-                        if (containerNumText.text == containerAns)
+                        elecNumText.color = Color.red;
+                        if (elecNumText.text == elecAns)
                         {
-                            containerNumText.text = "Success";
+                            elecNumText.text = "Success";
                             Invoke("success", 1.3f);
                         }
                         else
@@ -132,7 +138,7 @@ public class doorNumLock : MonoBehaviour
                         }
                     }
 
-                    else if (target.transform.parent.parent.name == "containerDoor")
+                    else if (target.transform.parent.parent.name == "containerDoor"||mode==3)
                     {
                         containerNumText.color = Color.red;
                         if (containerNumText.text == containerAns)
@@ -146,25 +152,28 @@ public class doorNumLock : MonoBehaviour
                             Invoke("fail", 1.3f);  //delay
                         }
                     }
+
+
                 }
             }
         }
+        
     }
     private void fail()
     {
-        if (target.transform.parent.parent.name == "goOutDoor")
+        if (mode==1)
         {
             doorNumText.color = Color.black;
             doorNumText.text = "";
         }
 
-        else if (target.transform.parent.parent.name == "BreakerPanelDoor")
+        else if (mode == 2)
         {
             elecNumText.color = Color.black;
             elecNumText.text = "";
         }
 
-        else if (target.transform.parent.parent.name == "containerDoor")
+        else if (mode == 3)
         {
             containerNumText.color = Color.black;
             containerNumText.text = "";
@@ -176,8 +185,9 @@ public class doorNumLock : MonoBehaviour
     {
         
 
-        if (target.transform.parent.parent.name == "BreakerPanelDoor")
+        if (mode==2)
         {
+            electronic.transform.GetComponent<Animation>().Play();
             electronic.transform.GetComponent<AudioSource>().Play();
         }
 

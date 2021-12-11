@@ -16,6 +16,7 @@ public class click : MonoBehaviour
     private GameObject containerDoor;
 
     public bool lookAtContainer = false;
+    public bool lookAtBreaker = false;
 
     [SerializeField]
     private GameObject cluePanel;
@@ -23,13 +24,7 @@ public class click : MonoBehaviour
     [SerializeField]
     private GameObject backToOriginBtn;
 
-    public string containerUserAns;
-    private string containerAns;
-
-    void Start()
-    {
-        
-    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -82,19 +77,23 @@ public class click : MonoBehaviour
                     lookAtContainer = true;
                     cluePanel.SetActive(false);
                 }
-                
+
+                if (target.name == "breakerPanel_Model" && !lookAtBreaker)
+                {
+                    backBtn2.originCameraPos = mainCamera.transform.position;
+                    backBtn2.originCameraRotation = mainCamera.transform.rotation;
+                    mainCamera.transform.position = new Vector3(33.1f, 28f, 47.2f);
+                    mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    mainCamera.transform.GetComponent<move>().enabled = false;
+                    backToOriginBtn.SetActive(true);
+                    lookAtBreaker = true;
+                    cluePanel.SetActive(false);
+                }
+
             }
         }
 
-        if(lookAtContainer)
-        {
-            if (containerUserAns == containerAns)
-            {
-                containerDoor.GetComponent<Animation>().Play();
-                containerDoor.GetComponent<AudioSource>().Play();
-                containerUserAns = "";
-            }
-        }
+
     }
 
     private GameObject getTarget3D()

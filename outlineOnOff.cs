@@ -51,7 +51,16 @@ public class outlineOnOff : MonoBehaviour
                 this.GetComponent<Outline>().enabled = true;
             }
         }
-        
+
+        else if (this.name == "breakerPanel_Model")
+        {
+            GameObject gameManager = GameObject.Find("GameManager");
+            if (!gameManager.GetComponent<click>().lookAtBreaker)
+            {
+                this.GetComponent<Outline>().enabled = true;
+            }
+        }
+
     }
 
     private void OnMouseExit()

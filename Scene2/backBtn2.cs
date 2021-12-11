@@ -13,6 +13,12 @@ public class backBtn2 : MonoBehaviour
     [SerializeField]
     private GameObject mainCamera;
 
+    [SerializeField]
+    private TextMesh containerNumText;
+
+    [SerializeField]
+    private TextMesh elecNumText;
+
     public static Vector3 originCameraPos;
     public static Quaternion originCameraRotation;
 
@@ -24,10 +30,20 @@ public class backBtn2 : MonoBehaviour
             mainCamera.transform.position = originCameraPos;
             mainCamera.transform.rotation = originCameraRotation;
             mainCamera.transform.GetComponent<move>().enabled = true;
-            gameManager.transform.GetComponent<click>().containerUserAns = "";
+            containerNumText.text = "";
             backToOriginBtn.gameObject.SetActive(false);
             gameManager.transform.GetComponent<click>().lookAtContainer = false;
         }
-        
+
+        else if (gameManager.transform.GetComponent<click>().lookAtBreaker)
+        {
+            mainCamera.transform.position = originCameraPos;
+            mainCamera.transform.rotation = originCameraRotation;
+            mainCamera.transform.GetComponent<move>().enabled = true;
+            elecNumText.text = "";
+            backToOriginBtn.gameObject.SetActive(false);
+            gameManager.transform.GetComponent<click>().lookAtBreaker = false;
+        }
+
     }
 }
