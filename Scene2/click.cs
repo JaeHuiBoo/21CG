@@ -12,7 +12,24 @@ public class click : MonoBehaviour
     [SerializeField]
     private Camera mainCamera;
 
+    [SerializeField]
+    private GameObject containerDoor;
 
+    public bool lookAtContainer = false;
+
+    [SerializeField]
+    private GameObject cluePanel;
+
+    [SerializeField]
+    private GameObject backToOriginBtn;
+
+    public string containerUserAns;
+    private string containerAns;
+
+    void Start()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -54,12 +71,28 @@ public class click : MonoBehaviour
                     }
                 }
 
-                if (target.name == "containerBox")
+                if (target.name == "containerBox" && !lookAtContainer)
                 {
-
+                    backBtn2.originCameraPos = mainCamera.transform.position;
+                    backBtn2.originCameraRotation = mainCamera.transform.rotation;
+                    mainCamera.transform.position = new Vector3(11.1f, 14.7f, -31.8f);
+                    mainCamera.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    mainCamera.transform.GetComponent<move>().enabled = false;
+                    backToOriginBtn.SetActive(true);
+                    lookAtContainer = true;
+                    cluePanel.SetActive(false);
                 }
+                
+            }
+        }
 
-
+        if(lookAtContainer)
+        {
+            if (containerUserAns == containerAns)
+            {
+                containerDoor.GetComponent<Animation>().Play();
+                containerDoor.GetComponent<AudioSource>().Play();
+                containerUserAns = "";
             }
         }
     }

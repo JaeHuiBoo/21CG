@@ -24,15 +24,6 @@ public class radioManager: MonoBehaviour
     GameObject enterBtn;
 
     public string userAns;
-    /*
-    [SerializeField]
-    GameObject notebook;
-
-    [SerializeField]
-    GameObject notebookBtn;
-
-    [SerializeField]
-    GameObject clue_0;*/
 
     private GameObject target;
 
@@ -44,7 +35,6 @@ public class radioManager: MonoBehaviour
     {
         InputField.SetActive(false);
         enterBtn.SetActive(false);
-        //clue_0.SetActive(false);
         backToOriginBtn.SetActive(false);
     }
 
@@ -71,8 +61,8 @@ public class radioManager: MonoBehaviour
                 else if (target.name=="morseCode")
                 {
                     lookAtRadio = true;
-                    btnListener.originCameraPos = mainCamera.transform.position;
-                    btnListener.originCameraRotation = mainCamera.transform.rotation;
+                    backBtn3.originCameraPos = mainCamera.transform.position;
+                    backBtn3.originCameraRotation = mainCamera.transform.rotation;
 
                     mainCamera.transform.position = new Vector3(-41.77f, 21.33f, 3.74f);
                     mainCamera.transform.rotation = Quaternion.Euler(new Vector3(63.685f, -90f, 0));
@@ -110,18 +100,6 @@ public class radioManager: MonoBehaviour
             Debug.Log("success");
         }
     }
-
-    /*
-    public void notebookBtnClick()
-    {
-        AudioSource audio = notebook.GetComponent<AudioSource>();
-        audio.Play();
-        notebookBtn.SetActive(false);
-        this.gameObject.SetActive(false);
-        clue_0.SetActive(true);
-        mainCamera.transform.position = new Vector3(32.01f, 10.52f, -21.6f);
-        mainCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
-    }
-    */
+    
 
 }

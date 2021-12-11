@@ -45,14 +45,13 @@ public class outlineOnOff : MonoBehaviour
 
         else if (this.name == "containerBox")
         {
-            if (this.transform.parent.GetComponent<numberLock>().lookAtNumLock)
+            GameObject gameManager = GameObject.Find("GameManager");
+            if (!gameManager.GetComponent<click>().lookAtContainer)
             {
                 this.GetComponent<Outline>().enabled = true;
             }
         }
-
-        else
-            this.GetComponent<Outline>().enabled = true;
+        
     }
 
     private void OnMouseExit()

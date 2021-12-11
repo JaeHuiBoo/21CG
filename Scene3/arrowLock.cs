@@ -51,8 +51,8 @@ public class arrowLock : MonoBehaviour
             {
                 if (target.name == "arrowlock" && !lookAtArrowLock)
                 {
-                    btnListener.originCameraPos = mainCamera.transform.position;
-                    btnListener.originCameraRotation = mainCamera.transform.rotation;
+                    backBtn3.originCameraPos = mainCamera.transform.position;
+                    backBtn3.originCameraRotation = mainCamera.transform.rotation;
                     mainCamera.transform.position = new Vector3(-3.53f, 12.75f, 39.42f);
                     mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
                     mainCamera.transform.GetComponent<move>().enabled = false;

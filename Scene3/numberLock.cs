@@ -52,8 +52,8 @@ public class numberLock : MonoBehaviour
             {
                 if (target.name == "number_lock" && !lookAtNumLock)
                 {
-                    btnListener.originCameraPos = mainCamera.transform.position;
-                    btnListener.originCameraRotation = mainCamera.transform.rotation;
+                    backBtn3.originCameraPos = mainCamera.transform.position;
+                    backBtn3.originCameraRotation = mainCamera.transform.rotation;
                     mainCamera.transform.position = new Vector3(-17.9f, 11.59f, 46.27f);
                     mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
                     mainCamera.transform.GetComponent<move>().enabled = false;

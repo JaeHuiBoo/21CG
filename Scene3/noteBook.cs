@@ -20,6 +20,8 @@ public class noteBook : MonoBehaviour
 
     public void notebookBtnClick()
     {
+        backBtn3.originCameraPos = mainCamera.transform.position;
+        backBtn3.originCameraRotation = mainCamera.transform.rotation;
         AudioSource audio = this.GetComponent<AudioSource>();
         audio.Play();
         notebookBtn.SetActive(false);
