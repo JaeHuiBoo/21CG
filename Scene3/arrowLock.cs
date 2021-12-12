@@ -35,7 +35,6 @@ public class arrowLock : MonoBehaviour
     void Start()
     {
         backToOriginButton.SetActive(false);
-        userAns = "";
     }
 
     // Update is called once per frame
