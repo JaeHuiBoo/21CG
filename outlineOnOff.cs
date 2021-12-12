@@ -70,6 +70,14 @@ public class outlineOnOff : MonoBehaviour
             }
         }
 
+        else if (this.name == "radio")
+        {
+            if (!this.GetComponent<radioManager>().lookAtRadio)
+            {
+                this.GetComponent<Outline>().enabled = true;
+            }
+        }
+
     }
 
     private void OnMouseExit()

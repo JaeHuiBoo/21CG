@@ -35,8 +35,12 @@ public class doorNumLock : MonoBehaviour
     void Start()
     {
         doorNumText.text = "";
-        elecNumText.text = "";
-        containerNumText.text = "";
+
+        if(elecNumText!=null)
+            elecNumText.text = "";
+
+        if (containerNumText != null)
+            containerNumText.text = "";
     }
 
     void Update()
@@ -184,7 +188,6 @@ public class doorNumLock : MonoBehaviour
     private void success()
     {
         
-
         if (mode==2)
         {
             electronic.transform.GetComponent<Animation>().Play();

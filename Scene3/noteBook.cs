@@ -11,7 +11,7 @@ public class noteBook : MonoBehaviour
     GameObject notebookBtn;
 
     [SerializeField]
-    GameObject clue_0;
+    GameObject noteBookHintText;
 
     [SerializeField]
     private GameObject backToOriginButton;
@@ -25,7 +25,7 @@ public class noteBook : MonoBehaviour
         AudioSource audio = this.GetComponent<AudioSource>();
         audio.Play();
         notebookBtn.SetActive(false);
-        clue_0.SetActive(true);
+        noteBookHintText.SetActive(true);
         backToOriginButton.SetActive(true);
         lookAtNotebook = true;
         mainCamera.transform.position = new Vector3(32.01f, 10.52f, -21.6f);

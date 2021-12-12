@@ -100,7 +100,6 @@ public class clickScene3 : MonoBehaviour
 
         if(userAnswers.SequenceEqual(ans))
         {
-            Debug.Log("in");
             pushNumTorus.transform.GetComponent<Animation>().Play();
             userAnswers.RemoveRange(0, ans.Count - 1);
         }

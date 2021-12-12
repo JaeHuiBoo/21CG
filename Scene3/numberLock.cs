@@ -30,7 +30,11 @@ public class numberLock : MonoBehaviour
     private GameObject thirdGear;
 
     [SerializeField]
-    private GameObject padLock;
+    private GameObject numLock;
+
+    [SerializeField]
+    private GameObject openBlueLock;
+
 
     public string userAns="-1";
     public string ans;
@@ -75,7 +79,12 @@ public class numberLock : MonoBehaviour
                 userAns = getGearNum(firstGear) + getGearNum(secondGear) + getGearNum(thirdGear);
                 if (userAns == ans)
                 {
-                    padLock.GetComponent<Animation>().Play("openNumLock");
+                    numLock.SetActive(false);
+                    openBlueLock.transform.GetComponent<Animation>().Play("openBlue");
+
+                    AudioSource audio = openBlueLock.transform.GetComponent<AudioSource>();
+                    audio.clip = Resources.Load("Audios/success") as AudioClip;
+                    audio.Play();
                     userAns = "";
                 }
             }

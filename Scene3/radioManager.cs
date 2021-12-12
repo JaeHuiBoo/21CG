@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class radioManager: MonoBehaviour
 {
     [SerializeField]
-    GameObject morseCode;
-
-    [SerializeField]
     Camera mainCamera;
 
     [SerializeField]
@@ -19,6 +16,9 @@ public class radioManager: MonoBehaviour
 
     [SerializeField]
     GameObject backToOriginBtn;
+
+    [SerializeField]
+    GameObject radioHintText;
 
     [SerializeField]
     GameObject enterBtn;
@@ -36,6 +36,7 @@ public class radioManager: MonoBehaviour
         InputField.SetActive(false);
         enterBtn.SetActive(false);
         backToOriginBtn.SetActive(false);
+        radioHintText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,7 +53,7 @@ public class radioManager: MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 
-                if (target.name=="morseCode")
+                if (target== radio)
                 {
                     lookAtRadio = true;
                     backBtn3.originCameraPos = mainCamera.transform.position;
@@ -91,7 +92,9 @@ public class radioManager: MonoBehaviour
         
         if (userAns == ans)
         {
-            InputField.transform.GetChild(2).GetComponent<Text>().text="2581";
+            radioHintText.SetActive(true);
+            InputField.SetActive(false);
+            radio.transform.GetComponent<AudioSource>().Stop();
         }
     }
     
