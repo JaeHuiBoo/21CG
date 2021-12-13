@@ -48,10 +48,10 @@ public class opening : MonoBehaviour
             for (int i = 0; i < str.Length; i++)
             {
                 openingText.text = str.Substring(0, i + 1);
-                yield return new WaitForSeconds(0.06f);
+                yield return new WaitForSeconds(0.08f);
                 if (i == str.Length - 1)
                 {
-                    yield return new WaitForSeconds(0.11f);
+                    yield return new WaitForSeconds(0.13f);
                 }
             }
         }

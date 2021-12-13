@@ -43,7 +43,6 @@ public class canvasButtons : MonoBehaviour
         cluePanel.SetActive(true);
         clueBackButton.SetActive(true);
         clueButton.SetActive(false);
-
         if (lockButton != null)
         {
             lockPanel.SetActive(false);

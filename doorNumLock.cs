@@ -21,7 +21,6 @@ public class doorNumLock : MonoBehaviour
 
     [SerializeField]
     private GameObject electronic;
-    
 
     [SerializeField]
     private GameObject mainCamera;
@@ -122,6 +121,7 @@ public class doorNumLock : MonoBehaviour
                         {
                             doorNumText.text = "Success";
                             Invoke("success", 1.3f);
+
                         }
                         else
                         {
@@ -159,8 +159,7 @@ public class doorNumLock : MonoBehaviour
                             Invoke("fail", 1.3f);  //delay
                         }
                     }
-
-
+                    
                 }
             }
         }
